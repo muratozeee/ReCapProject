@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,9 +39,19 @@ namespace DataAccess.Concrete.InMemory
             _Car.Remove(carToDelete);
         }
 
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Car> GetAll()
         {
             return _Car;
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>>? filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetById(int id)
@@ -48,12 +59,22 @@ namespace DataAccess.Concrete.InMemory
          return _Car.Where(c=>c.Id==id).ToList();
         }
 
+        public List<Car> GetCarsByBrandId(int brandId)
+        {
+           return _Car.Where(b=>b.Id ==brandId).ToList();
+        }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            return _Car.Where(c => c.Id ==colorId).ToList();
+        }
+
         public void Update(Car car)
         {
-       
-            Car carToUpdate =_Car.SingleOrDefault  (c=> c.Id == car.Id );
 
-            carToUpdate.DailyPrice=car.DailyPrice;
+            Car carToUpdate = _Car.SingleOrDefault(c => c.Id == car.Id);
+
+            carToUpdate.DailyPrice = car.DailyPrice;
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.Description = car.Description;
             carToUpdate.BrandId = car.BrandId;

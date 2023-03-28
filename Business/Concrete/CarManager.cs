@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public List<Car> GetAll()
         {
-            return _carDal.GetAll();
+            return _carDal.GetAll(); //if then correct we can list them
         }
     }
 }
