@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"DESKTOP-KHCVNCN\SQL;Database=Cars;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KHCVNCN\SQL;DataBase=Cars;TrustServerCertificate=True");
         }
         //which object in sql server match which object in project we are doint it
         public DbSet<Car> CarsInformations { get; set; }
