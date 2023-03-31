@@ -14,11 +14,12 @@ namespace DataAccess.Concrete.EntityFramework
         //we are selecting the which database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseNpgsql(@"Host = localhost; Username = postgres; Password = 1234; Database = RentCarDB; Pooling = true;");
+            //Connection String..
 
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KHCVNCN\SQL;DataBase=Cars;TrustServerCertificate=True");
         }
         //which object in sql server match which object in project we are doint it
-        public DbSet<Car> CarsInformations { get; set; }
+        public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
 

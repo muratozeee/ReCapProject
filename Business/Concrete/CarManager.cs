@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -14,16 +15,31 @@ namespace Business.Concrete
     {
 
         ICarDal _carDal;
-        IBrandDal _brandDal;
-
-        public CarManager(DataAccess.Concrete.EntityFramework.EfCarDal efCarDal, IBrandDal brandDal)
-        {
-            _brandDal = brandDal;
-        }
-
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
+        }
+
+        public void Add(Car car)
+        {
+            if (car.DailyPrice>0 && car.CarName.Length>=2)
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Car was added..!");
+            }
+            else
+            {
+                Console.WriteLine("Wrong Car Name And Daily Price Please Check it..!");
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
         }
 
         public List<Car> GetAll()
@@ -31,22 +47,11 @@ namespace Business.Concrete
             return _carDal.GetAll(); //if then correct we can list them
         }
 
-        public List<Brand> GetCarsByBrand(string brand)
-        {
-            if (brand.Length>=2)
-            {
-                return _brandDal.GetAll(p => p.Name == brand);
-            }
-            else
-            {
-                return _brandDal.GetAll();
-            }
-           
-        }
+      
 
         public List<Car> GetCarsByBrandId(int id)
         {
-            return _carDal.GetAll(p => p.BrandId == id);
+           return _carDal.GetAll(p=>p.BrandId==id);
         }
 
         public List<Car> GetCarsByColorId(int id)
@@ -54,21 +59,11 @@ namespace Business.Concrete
             return _carDal.GetAll(p => p.ColorId == id);
         }
 
-      
-       
-
-        public List<Car> GetCarsByDailyPrice(decimal price)
+        public List<Car> GetsCarsId(int id)
         {
-            if (price>0)
-            {
-                return _carDal.GetAll(p => p.DailyPrice == price);
-            }
-            else
-            {
-                return _carDal.GetAll();
-            }
-            
-            
+            return _carDal.GetAll(p => p.Id == id);
         }
+
+       
     }
 }
