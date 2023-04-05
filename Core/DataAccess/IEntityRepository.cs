@@ -1,7 +1,8 @@
-﻿using Entities.Abstract;
+﻿
+using Core.Entities;
 using System.Linq.Expressions;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //generic Constaint
     //class:it can be reference type

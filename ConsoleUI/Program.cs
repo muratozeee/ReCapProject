@@ -4,10 +4,13 @@ using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ConsoleUI
 {
-    internal class Program
+
+
+internal class Program
     {
         static void Main(string[] args)
         {
@@ -17,19 +20,42 @@ namespace ConsoleUI
             BrandManager brandManager=new BrandManager(new EfBrandDal());
             ColorManager colorManager=new ColorManager(new EfColorDal());
 
-            foreach (var cars in carManager.GetAll())
+            foreach (var carDetails in carManager.GetCarDetails())
             {
-                Console.WriteLine($"ID={cars.Id}");
-                Console.WriteLine($"BrandID={cars.BrandId}");
-                Console.WriteLine($"ColorID={cars.ColorId}");
-                Console.WriteLine($"Car Name={cars.CarName}");
-                Console.WriteLine($"Description={cars.Description}");
-                Console.WriteLine($"Daily Price={cars.DailyPrice}");
-
-                Console.WriteLine("-----------------------------");
+                Console.WriteLine($"ID={carDetails.CarId}");
+                Console.WriteLine($"Car Name={carDetails.CarName}");
+                Console.WriteLine($"Brand={carDetails.BrandName}");
+                Console.WriteLine($"Color={carDetails.ColorName}");
+                Console.WriteLine($"Daily Price={carDetails.DailyPrice}");
+                Console.WriteLine("---------------");
             }
 
 
+
+
+            //foreach (var cars in carManager.GetAll())
+            //{
+            //    Console.WriteLine($"ID={cars.Id}");
+            //    Console.WriteLine($"BrandID={cars.BrandId}");
+            //    Console.WriteLine($"ColorID={cars.ColorId}");
+            //    Console.WriteLine($"Car Name={cars.CarName}");
+            //    Console.WriteLine($"Description={cars.Description}");
+            //    Console.WriteLine($"Daily Price={cars.DailyPrice}");
+            //    Console.WriteLine($"Brand={brandManager.GetAll().Find(b => b.Id == cars.BrandId).Name}");
+            //    Console.WriteLine($"Color={colorManager.GetAll().Find(c => c.Id == cars.BrandId).Name}");
+
+            //    Console.WriteLine("-----------------------------");
+            //}
+
+
+            //foreach (var colors in colorManager.GetAll())
+            //{
+            //    colorManager.Delete(colors);
+            //}
+            //foreach (var brands in brandManager.GetAll())
+            //{
+            //    brandManager.Delete(brands);
+            //}
             //Car car1 = new Car { Id = 1, BrandId = 1, ColorId = 1, CarName = "XC5", ModelYear = 2020, DailyPrice = 1000, Description = "hatchback" };
             //Car car2 = new Car { Id = 2, BrandId = 1, ColorId = 1, CarName = "i3", ModelYear = 2022, DailyPrice = 1500, Description = "Sedan" };
             //Car car3 = new Car { Id = 3, BrandId = 1, ColorId = 2, CarName = "i4", ModelYear = 2019, DailyPrice = 1450, Description = "hatchback" };
@@ -47,36 +73,15 @@ namespace ConsoleUI
             //Car car15 = new Car { Id = 15, BrandId = 1, ColorId = 3, CarName = "X6", ModelYear = 2018, DailyPrice = 1300, Description = "Sedan" };
 
             //Brand brand1 = new Brand { Id = 1, Name = "Volvo" };
-            //Brand brand2 = new Brand { Id = 2, Name = "Hundai" };
-            //Brand brand3 = new Brand { Id = 3, Name = "Fiat" };
-            //Brand brand4 = new Brand { Id = 4, Name = "Mercedes" };
-            //Brand brand5 = new Brand { Id = 5, Name = "Mercedes" };
-            //Brand brand6 = new Brand { Id = 6, Name = "Volvo" };
-            //Brand brand7 = new Brand { Id = 7, Name = "Volvo" };
-            //Brand brand8 = new Brand { Id = 8, Name = "TOGG" };
-            //Brand brand9 = new Brand { Id = 9, Name = "TOGG" };
-            //Brand brand10 = new Brand { Id = 10, Name = "Volvo" };
-            //Brand brand11 = new Brand { Id = 11, Name = "Volvo" };
-            //Brand brand12 = new Brand { Id = 12, Name = "Volvo" };
-            //Brand brand13 = new Brand { Id = 13, Name = "Renult" };
-            //Brand brand14 = new Brand { Id = 14, Name = "Renult" };
-            //Brand brand15 = new Brand { Id = 15, Name = "Lexus" };
+            //Brand brand2 = new Brand { Id = 2, Name = "TOGG" };
+            //Brand brand3 = new Brand { Id = 3, Name = "Hundai" };
+            //Brand brand4 = new Brand { Id = 4, Name = "Fiat" };
 
             //Color color1 = new Color { Id = 1, Name = "Blue" };
             //Color color2 = new Color { Id = 2, Name = "Black" };
             //Color color3 = new Color { Id = 3, Name = "Yellow" };
             //Color color4 = new Color { Id = 4, Name = "Brown" };
-            //Color color5 = new Color { Id = 5, Name = "White" };
-            //Color color6 = new Color { Id = 6, Name = "White" };
-            //Color color7 = new Color { Id = 7, Name = "Black" };
-            //Color color8 = new Color { Id = 8, Name = "Blue" };
-            //Color color9 = new Color { Id = 9, Name = "Brown" };
-            //Color color10 = new Color { Id = 10, Name = "Blue" };
-            //Color color11 = new Color { Id = 11, Name = "Black" };
-            //Color color12 = new Color { Id = 12, Name = "Blue" };
-            //Color color13 = new Color { Id = 13, Name = "Blue" };
-            //Color color14 = new Color { Id = 14, Name = "Blue" };
-            //Color color15 = new Color { Id = 15, Name = "Blue" };
+
 
 
             //carManager.Add(car1);
@@ -96,48 +101,16 @@ namespace ConsoleUI
             //colorManager.Add(color4);
 
             //carManager.Add(car5);
-            //brandManager.Add(brand5);
-            //colorManager.Add(color5);
-
             //carManager.Add(car6);
-            //brandManager.Add(brand6);
-            //colorManager.Add(color6);
-
             //carManager.Add(car7);
-            //brandManager.Add(brand7);
-            //colorManager.Add(color7);
-
             //carManager.Add(car8);
-            //brandManager.Add(brand8);
-            //colorManager.Add(color8);
-
             //carManager.Add(car9);
-            //brandManager.Add(brand9);
-            //colorManager.Add(color9);
-
             //carManager.Add(car10);
-            //brandManager.Add(brand10);
-            //colorManager.Add(color10);
-
-            //carManager.Add(car11);
-            //brandManager.Add(brand11);
-            //colorManager.Add(color11);
-
             //carManager.Add(car12);
-            //brandManager.Add(brand12);
-            //colorManager.Add(color12);
-
             //carManager.Add(car13);
-            //brandManager.Add(brand13);
-            //colorManager.Add(color13);
-
             //carManager.Add(car14);
-            //brandManager.Add(brand14);
-            //colorManager.Add(color14);
-
             //carManager.Add(car15);
-            //brandManager.Add(brand15);
-            //colorManager.Add(color15);
+
 
 
 

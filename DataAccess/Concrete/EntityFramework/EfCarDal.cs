@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,63 +12,26 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, CarContext>, ICarDal
     {
-        public void Add(Car entity)
-        {
-            using (CarContext context = new CarContext())
-            {
-                //addedEntity reach the entity reference numbers from coming the add function.
-                var addedEntity = context.Entry(entity);
-                //then we are adding this reference type
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Car entity)
-        {
-            using (CarContext context = new CarContext())
-            {
-                //DeletedEntity reach the entity reference numbers from coming the add function.
-                var deletedEntity = context.Entry(entity);
-                //then we deleted this reference type
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-      
-
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public List<CarDetailsDto> GetCarDetails()
         {
             using (CarContext context=new CarContext())
-            {
-                return context.Set<Car>().SingleOrDefault(filter);
-            }
-        }
+            { 
+                //we join the brands and colors with cars 
 
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
-        {
-            using (CarContext context=new CarContext() )
-            {
-                //we are taking all cars data
-                return filter == null
-                    ?  context.Set<Car>().ToList() 
-                    : context.Set<Car>().Where(filter).ToList();
+                var result = from c in context.Cars //representative c=cars
+                             join b in context.Brands //representative b=brands
+                             on c.BrandId equals b.Id  //we joined brands and cars we match the with id
+                             join co in context.Colors //co=colors from coming the Database
+                             on c.ColorId equals co.Id   //we joined the colors and cars we match the with id if they same id.
+                             select new CarDetailsDto { //then 
+                                 CarId=c.Id,BrandName=b.Name,CarName=c.CarName,//we found them and dtos alias were defined  database variables
+                                 ColorName=co.Name,DailyPrice=c.DailyPrice 
+                             };
+                return result.ToList(); //then we listed in result variable.
 
-            }
-        }
-
-        public void Update(Car entity)
-        {
-            using (CarContext context = new CarContext())
-            {
-                //updatedEntity reach the entity reference numbers from coming the add function.
-                var updatedEntity = context.Entry(entity);
-                //then we deleted this reference type
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
+                         
             }
         }
     }

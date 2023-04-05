@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetById(int id)
         {
          return _Car.Where(c=>c.Id==id).ToList();
+        }
+
+        public List<CarDetailsDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetCarsByBrandId(int brandId)
