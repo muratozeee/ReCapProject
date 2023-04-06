@@ -41,7 +41,5 @@ namespace Business.Concrete
         {
             return _colorDal.GetAll(c => c.Id == id);
         }
-
-      
     }
 }

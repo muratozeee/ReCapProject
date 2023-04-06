@@ -20,15 +20,15 @@ internal class Program
             BrandManager brandManager=new BrandManager(new EfBrandDal());
             ColorManager colorManager=new ColorManager(new EfColorDal());
 
-            foreach (var carDetails in carManager.GetCarDetails())
-            {
-                Console.WriteLine($"ID={carDetails.CarId}");
-                Console.WriteLine($"Car Name={carDetails.CarName}");
-                Console.WriteLine($"Brand={carDetails.BrandName}");
-                Console.WriteLine($"Color={carDetails.ColorName}");
-                Console.WriteLine($"Daily Price={carDetails.DailyPrice}");
-                Console.WriteLine("---------------");
-            }
+            //foreach (var carDetails in carManager.GetCarDetails())
+            //{
+            //    Console.WriteLine($"ID={carDetails.CarId}");
+            //    Console.WriteLine($"Car Name={carDetails.CarName}");
+            //    Console.WriteLine($"Brand={carDetails.BrandName}");
+            //    Console.WriteLine($"Color={carDetails.ColorName}");
+            //    Console.WriteLine($"Daily Price={carDetails.DailyPrice}");
+            //    Console.WriteLine("---------------");
+            //}
 
 
 

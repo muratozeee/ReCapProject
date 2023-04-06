@@ -20,16 +20,20 @@ namespace DataAccess.Concrete.EntityFramework
             { 
                 //we join the brands and colors with cars 
 
-                var result = from c in context.Cars //representative c=cars
+                var result = (from c in context.Cars //representative c=cars
                              join b in context.Brands //representative b=brands
                              on c.BrandId equals b.Id  //we joined brands and cars we match the with id
                              join co in context.Colors //co=colors from coming the Database
                              on c.ColorId equals co.Id   //we joined the colors and cars we match the with id if they same id.
                              select new CarDetailsDto { //then 
-                                 CarId=c.Id,BrandName=b.Name,CarName=c.CarName,//we found them and dtos alias were defined  database variables
-                                 ColorName=co.Name,DailyPrice=c.DailyPrice 
-                             };
-                return result.ToList(); //then we listed in result variable.
+                                 CarId=c.Id,
+                                 BrandName=b.Name,
+                                 CarName=c.CarName,//we found them and dtos alias were defined  database variables
+                                 ColorName=co.Name,
+                                 DailyPrice=c.DailyPrice 
+                             }).OrderBy(c => c.CarId).ToList();
+
+                return result; //then we listed in result variable.
 
                          
             }
