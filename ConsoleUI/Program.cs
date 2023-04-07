@@ -19,6 +19,34 @@ internal class Program
             CarManager carManager = new CarManager(new EfCarDal());
             BrandManager brandManager=new BrandManager(new EfBrandDal());
             ColorManager colorManager=new ColorManager(new EfColorDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            UserManager userManager = new UserManager(new EfUserDal());
+
+
+            //Customer customer1 = new Customer { CompanyName = "Tei", UserId = 1 ,Id=1};
+
+            //User user1 = new User { Id = 1, FirstName = "Suat", LastName = "Satılmıs", Email = "suat.stlms@gmail.com", Password = "12345" };
+            //User user2 = new User { Id = 2, FirstName = "Murat", LastName = "Oz", Email = "murat.ozeee@gmail.com", Password = "456" };
+
+            //customerManager.Add(customer1);
+
+            //userManager.Add(user2);
+
+
+
+            //var result = carManager.GetCarDetails();
+            //if (result.Success==true)
+            //{
+            //    foreach (var cars in result.Data)
+            //    {
+            //        Console.WriteLine(cars.CarName + "/" + cars.BrandName);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
 
             //foreach (var carDetails in carManager.GetCarDetails())
             //{
