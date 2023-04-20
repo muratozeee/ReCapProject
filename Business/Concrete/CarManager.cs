@@ -52,10 +52,12 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAll()
         {
             //if then correct we can list them
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed); 
-         //if false=
-         // return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-       
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
+
+
+            //if false=
+            // return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
