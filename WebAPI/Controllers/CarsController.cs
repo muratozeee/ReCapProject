@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Business.Abstract;
 using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -73,8 +74,8 @@ namespace WebAPI.Controllers
         }
         
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int Id)
+        [HttpGet("getcarsbyid")]
+        public IActionResult GetsCarsById(int Id)
         {
             var result = _carService.GetsCarsId(Id);
             if (result.Success)
@@ -83,6 +84,45 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getcarsbybrandid")]
+        public IActionResult GetsCarsByBrandId(int brandId)
+        {
+            var result = _carService.GetCarsByBrandId(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+
+        [HttpGet("getcarsbycolorid")]
+
+        public IActionResult GetsCarsByColorId(int colorId)
+        {
+
+            var result = _carService.GetCarsByColorId(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("cardetailsdto")]
+        public IActionResult GetCarDetails()
+        {
+            var result = _carService.GetCarDetails();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+     
+        }
+
 
     }
 }
