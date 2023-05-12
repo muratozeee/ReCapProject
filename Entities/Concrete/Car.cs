@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Car:IEntity //Other class can reach this class..! others layers can reach here...!
+    public class Car : IEntity //Other class can reach this class..! others layers can reach here...!
     {
         public int Id { get; set; }
         public int BrandId { get; set; }

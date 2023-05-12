@@ -16,6 +16,8 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseNpgsql(@"Host = localhost; Username = postgres; Password = 1234; Database = RentCarDB; Pooling = true;");
             //Connection String..
+            //for time enable to working with together time.
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         }
         //which object in sql server match which object in project we are doint it
@@ -25,6 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
 
 

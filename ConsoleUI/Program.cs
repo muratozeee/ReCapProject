@@ -22,6 +22,11 @@ internal class Program
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             UserManager userManager = new UserManager(new EfUserDal());
 
+            //CarImage carImage = new CarImage();
+
+            //carImage.Date = DateTime.Now;
+            //Console.WriteLine(carImage.Date);
+
 
             //Customer customer1 = new Customer { CompanyName = "Tei", UserId = 1 ,Id=1};
 
@@ -33,11 +38,11 @@ internal class Program
             //};
             //customerManager.Add()
             //customerManager.Add(customer1);
-           
 
-           //userManager.Add(user1);
 
-           // userManager.Add(user2);
+            //userManager.Add(user1);
+
+            // userManager.Add(user2);
 
 
 

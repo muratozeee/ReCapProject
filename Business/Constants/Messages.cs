@@ -49,13 +49,14 @@ namespace Business.Constants
 
         public static string RentalError = "Rental didnt Added..!";
 
+        public static string ImageAdded = "Image was Added..!";
 
-
-
-
-
-
-
-
+        public static string CarImageLimitReached = "Limit of Car images were Reached..!";
+        public static string CarImageAlreadyHave = "This Car Image already have...! You have to Upload different Image";
+        public static string CarImageDeleted = "Car Image was Deleted..!";
+        public static string ImagesListedById = "Image was Listed by Id";
+        public static string ImageUpdated = "Image was Updated..!";
+        public static string ImagesListed = "Images were Listed..!";
+        public static string ImagesListedByCarId = "Images were Listed By Car ID";
     }
 }
