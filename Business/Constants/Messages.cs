@@ -58,5 +58,14 @@ namespace Business.Constants
         public static string ImageUpdated = "Image was Updated..!";
         public static string ImagesListed = "Images were Listed..!";
         public static string ImagesListedByCarId = "Images were Listed By Car ID";
+        public static string AuthorizationDenied = "Authorization is Denied..!";
+        public static string UserRegistered = "User is Registered..!";
+        public static string UserNotFound ="User is Not Found..!";
+        public static string PasswordError = "Password is Error..!" ;
+        public static string SuccessfulLogin = "Login is Successfully..!";
+        public static string AccessTokenCreated = "AccessToken is Created..!";
+        public static string UsersListed = "Users were Listed..!";
+        public static string InvalidEmail = "Email is Invalid..!";
+        public static string UserExists = "User already Exists..!";
     }
 }

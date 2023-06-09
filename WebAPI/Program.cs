@@ -1,11 +1,11 @@
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Business.Abstract;
-using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebAPI
 {
@@ -20,7 +20,7 @@ namespace WebAPI
             builder.Services.AddControllers();
             // it means new and just one reference for that one and it is provide us very fast no need to memory every each one...
 
-           
+
             //builder.Services.AddSingleton<IBrandService, BrandManager>();
             //builder.Services.AddSingleton<IBrandDal, EfBrandDal>();
 
@@ -39,11 +39,26 @@ namespace WebAPI
             //builder.Services.AddSingleton<IUserService ,UserManager>();
             //builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
+           var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
 
 
 
-                    
-        
+
 
 
 
@@ -78,8 +93,12 @@ namespace WebAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+           
 
+            //it is middlewave
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.MapControllers();
 

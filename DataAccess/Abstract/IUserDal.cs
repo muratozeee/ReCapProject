@@ -1,14 +1,11 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
+    //it can use the Database
     public interface IUserDal : IEntityRepository<User>
     {
+        List<OperationClaim> GetClaims(User user);
     }
 }
