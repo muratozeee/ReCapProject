@@ -10,6 +10,8 @@ namespace Core.Utilities.Security.JWT
 {
     public class JwtHelper : ITokenHelper
     {
+        //When ı added the Microsof.Extensions.Configuration.Binder in ManageNuget.
+
         //IConfiguration can help read the appstettings.json
         public IConfiguration Configuration { get; }
         //when ı read from appsettings.json ı will send the object
@@ -21,7 +23,12 @@ namespace Core.Utilities.Security.JWT
         {
             Configuration = configuration;
             //it is matching the from API appsettings.json to TokenOptions fields you can check them...
+
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+           
+
+
+
 
         }
         //it is creating the token for user... and give the claims then it will create the token depending on user and claims.

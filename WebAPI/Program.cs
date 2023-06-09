@@ -1,7 +1,9 @@
 
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
+using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,9 +41,10 @@ namespace WebAPI
             //builder.Services.AddSingleton<IUserService ,UserManager>();
             //builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
-           var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+           var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
