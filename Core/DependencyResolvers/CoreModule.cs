@@ -1,0 +1,20 @@
+﻿using Core.Utilities.IoC;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Core.DependencyResolvers
+{
+    public class CoreModule : ICoreModule
+    {
+        public void Load(IServiceCollection serviceCollection)
+        {
+            //if anyona want to IHttpContextAccessor than give them HttpContextAccessor 
+            serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        }
+    }
+}

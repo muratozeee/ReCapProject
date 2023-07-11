@@ -15,7 +15,7 @@ namespace Core.Utilities.Security.Encryption
         public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
         {
             //Web API JWT is defined the which key and which algorithm will use in the system. 
-            return new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha512Signature);
+            return new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256Signature);
         }
     }
 }

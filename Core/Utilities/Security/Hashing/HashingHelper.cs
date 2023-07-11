@@ -18,7 +18,7 @@ namespace Core.Utilities.Security.Hashing
             //IDisposible pattern
             //hmac=crypto  class
             //we are creating the cyrptograhy method using Sha512 algorithm
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA256())
             {
                 //we are giving out with hcmac.key
                 //every each user has a different key.
@@ -38,7 +38,7 @@ namespace Core.Utilities.Security.Hashing
         public static bool VerifyPasswordHash(string password,byte[] passwordHash,byte[] passwordSalt )
         {
             //also we are using salt from here.
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            using (var hmac = new System.Security.Cryptography.HMACSHA256(passwordSalt))
             {
                 //password is user password.User trying the password in the system and we will hash and we will compare them
                 //to verify.

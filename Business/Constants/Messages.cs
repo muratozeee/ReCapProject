@@ -67,5 +67,6 @@ namespace Business.Constants
         public static string UsersListed = "Users were Listed..!";
         public static string InvalidEmail = "Email is Invalid..!";
         public static string UserExists = "User already Exists..!";
+        public static string UserAlreadyExists= "User already Exists..!";
     }
 }
