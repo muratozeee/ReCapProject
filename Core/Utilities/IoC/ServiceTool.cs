@@ -11,7 +11,6 @@ namespace Core.Utilities.IoC
     {
         //these code provide the creating injection from Autofac
         public static IServiceProvider ServiceProvider { get; private set; }
-
         public static IServiceCollection Create(IServiceCollection services)
         {
             ServiceProvider = services.BuildServiceProvider();

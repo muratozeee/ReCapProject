@@ -11,7 +11,6 @@ namespace Core.Utilities.Security.Encryption
     {
         public static SecurityKey CreateSecurityKey(string securityKey)
         {
-            //SymmetricSecurityKey=created the instance of securitykey 
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
 
         }

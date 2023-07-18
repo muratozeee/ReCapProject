@@ -6,10 +6,6 @@ namespace Core.Extensions
 {
     public static class ClaimExtensions
     {
-        //this ICollection<Claim> claims = when we see this code
-        //there is no in here normal.it is coming from .Net directly we are just extension them.
-        //normally we have everyeach one have to new them
-        //but no need we can shortly use them with extension method as a claim
         public static void AddEmail(this ICollection<Claim> claims, string email)
         {
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, email));

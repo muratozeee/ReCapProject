@@ -13,7 +13,6 @@ namespace Core.DependencyResolvers
     {
         public void Load(IServiceCollection serviceCollection)
         {
-            //if anyona want to IHttpContextAccessor than give them HttpContextAccessor 
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
