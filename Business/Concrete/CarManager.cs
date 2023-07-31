@@ -3,6 +3,8 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Perfomance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -34,6 +36,7 @@ namespace Business.Concrete
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
+        [TransactionScopeAspect]
         public IResult Add(Car car)
         {
             //business codes
@@ -42,8 +45,7 @@ namespace Business.Concrete
            return new SuccessResult(Messages.CarAdded);
         
         }
-
-      
+        
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -80,7 +82,9 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(p => p.ColorId == id));
         }
+
         [CacheAspect]
+        [PerformanceAspect(5)] //if this method more than 5 seconds,it will be giving warning to us.
         public IDataResult<List<Car>> GetsCarsId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.Id == id));

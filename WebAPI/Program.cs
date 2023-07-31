@@ -71,7 +71,7 @@ namespace WebAPI
                 new CoreModule()
             });
 
-
+            builder.Services.AddMemoryCache();
             
 
 
